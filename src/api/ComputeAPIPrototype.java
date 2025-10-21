@@ -1,4 +1,4 @@
-package API;
+package api;
 
 public class ComputeAPIPrototype {
     public void prototype(ComputeAPI computeapi) {
