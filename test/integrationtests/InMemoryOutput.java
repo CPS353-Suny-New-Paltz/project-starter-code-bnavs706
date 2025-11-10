@@ -1,5 +1,5 @@
 package integrationtests;
-import java.util.ArrayList;
+import java.util.ArrayList; 
 import java.util.List;
 
 //Collects written strings in memory. 
