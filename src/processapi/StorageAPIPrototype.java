@@ -1,4 +1,4 @@
-package api;
+package processapi;
 import project.annotations.ProcessAPIPrototype;
 public class StorageAPIPrototype {
 	 @ProcessAPIPrototype
