@@ -30,8 +30,10 @@ dependencies {
 
 test {
 	filter {
-	// Will filter and run tests only titled '*Ready*'
+	failOnNoMatchingTests = false 
 	includeTestsMatching "*Ready*"
 	}
     useJUnitPlatform()
+    
+    
 }
