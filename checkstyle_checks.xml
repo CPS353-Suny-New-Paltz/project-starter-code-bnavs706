@@ -195,3 +195,9 @@
     </module>
   </module>
 </module>
+  <!-- New Rule For Line Length Updated for Check Point 3 -->
+    <module name="LineLength">
+        <property name="max" value="120"/>
+    </module>
+
+</module>
