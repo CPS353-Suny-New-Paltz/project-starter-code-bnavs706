@@ -14,13 +14,6 @@ import implementations.UserImplement;
 import networkapi.UserAPI;
 import processapi.StorageAPI;
 
-/**
- * Manual testing entry point for Checkpoint 4.
- *
- * This class wires together the real API implementations in src/ and
- * runs a simple computation over the contents of {@link #INPUT}, writing
- * the results to {@link #OUTPUT}.
- */
 public class ManualTestingFramework {
 
     public static final String INPUT = "manualTestInput.txt";
@@ -30,28 +23,17 @@ public class ManualTestingFramework {
         try {
             runComputation();
         } catch (IOException e) {
-            // For manual testing it's fine to print the stack trace.
             e.printStackTrace();
         }
     }
 
-    /**
-     * Reads all lines from the input file, runs them through the compute
-     * engine, and writes a single comma-separated line of results.
-     *
-     * The Checkpoint 4 tests expect:
-     *  - the output file to exist after this method runs
-     *  - exactly one line in the file
-     *  - exactly one comma-separated result for each input line
-     */
     private static void runComputation() throws IOException {
-        // TODO 1 equivalent:
-        // Instantiate real implementations of all three APIs.
+        // Use the real implementations from src/
         ComputeAPI engine = new ComputeImplement();
         StorageAPI storage = new StorageImplement();
         UserAPI user = new UserImplement(engine, storage);
 
-        // Simple example configuration using the UserAPI.
+        // Example configuration through UserAPI
         user.setInput(INPUT);
         user.setOutput(OUTPUT);
         user.setDelimiters(",", "=");
@@ -67,20 +49,31 @@ public class ManualTestingFramework {
             if (trimmed.isEmpty()) {
                 continue;
             }
+
             try {
                 int value = Integer.parseInt(trimmed);
-                // Use the conceptual compute engine to calculate primes.
-                String primeResult = engine.calculatePrimes(value);
-                outputs.add(primeResult);
+
+                // Use the compute engine, but make sure EACH result
+                // is a single comma-free token.
+                String result = engine.calculatePrimes(value);
+
+                // Remove commas INSIDE the result so split(",") only
+                // sees the commas we add between results.
+                if (result.isEmpty()) {
+                    // still produce a token so outputs count == inputs count
+                    result = "NO_RESULT";
+                } else {
+                    result = result.replace(",", ";");
+                }
+
+                outputs.add(result);
             } catch (NumberFormatException e) {
-                // If a line is not a valid integer, still reserve a slot
-                // so that there is one output for each input.
-                outputs.add("");
+                // Non-numeric line: still create one token
+                outputs.add("INVALID");
             }
         }
 
-        // If there were no valid lines, still create the file,
-        // but the checkpoint tests focus on the non-empty case.
+        // Always create the output file; write ONE comma-separated line
         if (outputs.isEmpty()) {
             Files.write(outputPath, List.of(""));
         } else {

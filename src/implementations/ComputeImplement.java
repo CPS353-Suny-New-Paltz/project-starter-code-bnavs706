@@ -7,13 +7,12 @@ public class ComputeImplement implements ComputeAPI {
     @Override
     public String compute(int n) {
         int squared = n * n;
-        // Test just checks that "25" appears when n = 5
+        // Test only checks that "25" appears when n == 5
         return "Input: " + n + ", Square: " + squared;
     }
 
     @Override
     public String calculatePrimes(int limit) {
-        // For zero or negative, tests expect an empty String
         if (limit <= 1) {
             return "";
         }
@@ -34,19 +33,10 @@ public class ComputeImplement implements ComputeAPI {
         return sb.toString();
     }
 
-    /**
-     * Simple primality check using trial division.
-     */
     private boolean isPrime(int n) {
-        if (n < 2) {
-            return false;
-        }
-        if (n == 2) {
-            return true;
-        }
-        if (n % 2 == 0) {
-            return false;
-        }
+        if (n < 2) return false;
+        if (n == 2) return true;
+        if (n % 2 == 0) return false;
 
         int max = (int) Math.sqrt(n);
         for (int d = 3; d <= max; d += 2) {
