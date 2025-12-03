@@ -34,9 +34,15 @@ public class ComputeImplement implements ComputeAPI {
     }
 
     private boolean isPrime(int n) {
-        if (n < 2) return false;
-        if (n == 2) return true;
-        if (n % 2 == 0) return false;
+        if (n < 2) {
+            return false;
+        }
+        if (n == 2) {
+            return true;
+        }
+        if (n % 2 == 0) {
+            return false;
+        }
 
         int max = (int) Math.sqrt(n);
         for (int d = 3; d <= max; d += 2) {
