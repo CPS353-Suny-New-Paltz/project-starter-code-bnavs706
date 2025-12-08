@@ -47,12 +47,11 @@
       <property name="tokens"
                value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
     <!-- Extra rule -->
-    <module name="WhitespaceAround"/>
-
-    <module name="NeedBraces">
-      <property name="tokens"
-                value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
-    </module>
+  <module name="Indentation">
+  <property name="basicOffset" value="4"/>
+  <property name="braceAdjustment" value="0"/>
+  <property name="caseIndent" value="4"/>
+</module>
 </module>
 
     <module name="NeedBraces">
