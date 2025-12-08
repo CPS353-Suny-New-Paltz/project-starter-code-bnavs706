@@ -47,6 +47,11 @@
       <property name="tokens"
                value="LITERAL_TRY, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE, LITERAL_SWITCH"/>
     </module>
+            <module name="WhitespaceAround">
+  <property name="tokens" value="ASSIGN, DIV, EQUAL, GE, GT, LAND, LE, LITERAL_INSTANCEOF,
+    LOR, LT, MINUS, MOD, NOT_EQUAL, PLUS, STAR"/>
+</module>
+
     <module name="NeedBraces">
       <property name="tokens"
                value="LITERAL_DO, LITERAL_ELSE, LITERAL_FOR, LITERAL_IF, LITERAL_WHILE"/>
